@@ -1,6 +1,7 @@
 "use client";
 
 import useAuth from "@/context/AuthContext";
+import { useDeleteCar } from "@/features/cars/use-delete-car";
 import { useFetchCar } from "@/features/cars/useFetchCar";
 import {
   Card,
@@ -13,6 +14,9 @@ import {
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
+// components
+import { MdDelete } from "react-icons/md";
+
 export default function App() {
   const { user } = useAuth();
 
@@ -21,12 +25,30 @@ export default function App() {
   }
 
   const { data: cars } = useFetchCar();
+  const deleteCar = useDeleteCar();
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await deleteCar(id);
+
+      if (response.success) {
+        alert("Mobil berhasil dihapus");
+      } else {
+        throw new Error(response.error || "Failed to delete car");
+      }
+    } catch (error) {
+      console.log("Failed deleted Car");
+    }
+  };
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 items-center justify-center gap-8">
       {cars.map((item) => (
         <Card className="" key={item.id}>
-          <CardHeader className="">
+          <CardHeader className="flex justify-between items-center">
             <h1 className="text-md uppercase font-bold">{item.brand}</h1>
+            <button onClick={() => handleDelete(item.id)}>
+              <MdDelete className="text-red-500" size={"20px"} />
+            </button>
           </CardHeader>
           <Divider />
           <CardBody className="overflow-visible py-2">
