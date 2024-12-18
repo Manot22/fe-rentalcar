@@ -13,6 +13,9 @@ const HomePage = () => {
   return (
     <main className="container mx-auto">
       <Header />
+      <h3 className="capitalize text-md font-serif py-4">
+        selmat datang <span className="text-indigo-500">{user.name}</span>
+      </h3>
       <div className="flex justify-center items-center">
         <h1 className="text-xl font-semibold">Home Page</h1>
       </div>

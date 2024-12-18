@@ -44,9 +44,6 @@ export default function App() {
   };
   return (
     <main>
-      <h3 className="capitalize text-medium font-serif py-2">
-        selmat datang {user.name}
-      </h3>
       <div className="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 items-center justify-center gap-8">
         {cars.map((item) => (
           <Card className="" key={item.id}>
