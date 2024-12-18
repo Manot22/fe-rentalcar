@@ -12,10 +12,12 @@ import {
   Button,
 } from "@nextui-org/react";
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 // components
 import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
 export default function App() {
   const { user } = useAuth();
@@ -46,9 +48,16 @@ export default function App() {
         <Card className="" key={item.id}>
           <CardHeader className="flex justify-between items-center">
             <h1 className="text-md uppercase font-bold">{item.brand}</h1>
-            <button onClick={() => handleDelete(item.id)}>
-              <MdDelete className="text-red-500" size={"20px"} />
-            </button>
+            <div className="gap-4">
+              <Link href={`/car/edit/${item.id}`}>
+                <button>
+                  <FaEdit size={"20px"} />
+                </button>
+              </Link>
+              <button onClick={() => handleDelete(item.id)}>
+                <MdDelete className="text-red-500" size={"20px"} />
+              </button>
+            </div>
           </CardHeader>
           <Divider />
           <CardBody className="overflow-visible py-2">

@@ -9,7 +9,7 @@ const Header = () => {
             Rental<span className="text-indigo-500">Yuk</span>
           </h1>
         </div>
-        <div>
+        <div className="hidden md:flex">
           <Navbar />
         </div>
       </div>
