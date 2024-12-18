@@ -11,10 +11,10 @@ const HomePage = () => {
     redirect("/login");
   }
   return (
-    <main>
+    <main className="container mx-auto">
       <Header />
-      <div>
-        <h1>Home Page</h1>
+      <div className="flex justify-center items-center">
+        <h1 className="text-xl font-semibold">Home Page</h1>
       </div>
     </main>
   );
