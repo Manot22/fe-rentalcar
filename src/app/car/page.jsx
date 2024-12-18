@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const CarPage = () => {
   return (
-    <main className="container mx-auto">
+    <main className="container mx-auto py-4">
       <Header />
       <div>
         <Link href="/car/create">
