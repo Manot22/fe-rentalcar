@@ -5,6 +5,7 @@ import { validationRegister } from "@/services/authValidation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { IoArrowBackCircleOutline } from "react-icons/io5";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -43,9 +44,26 @@ const RegisterForm = () => {
     }
   };
 
+  const handleClick = () => {
+    router.back();
+  };
+
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-lg">
+        <div className="flex justify-start items-center">
+          <button
+            type="button"
+            onClick={() => {
+              handleClick();
+            }}
+          >
+            <IoArrowBackCircleOutline
+              size={"40px"}
+              className="text-black hover:text-gray-400"
+            />
+          </button>
+        </div>
         <h1 className="text-center text-2xl font-bold  sm:text-3xl">
           Register
         </h1>

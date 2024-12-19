@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
+import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -12,8 +13,6 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { login } = useAuth();
-
-  const description = "Login berhasil";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
