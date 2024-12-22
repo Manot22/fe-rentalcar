@@ -3,7 +3,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export const rentalApi = {
   // Mengambil semua rental
   getAllRentals: async () => {
-    const res = await fetch(`${API_URL}/rentals`, {
+    const res = await fetch(`${API_URL}/api/v1/rentals`, {
       cache: "no-store",
     });
     if (!res.ok) throw new Error("Failed to fetch rentals");
@@ -12,7 +12,7 @@ export const rentalApi = {
 
   // Mengambil rental berdasarkan ID
   getRentalById: async (id) => {
-    const res = await fetch(`${API_URL}/rentals/${id}`, {
+    const res = await fetch(`${API_URL}/api/v1/rentals/${id}`, {
       cache: "no-store",
     });
     if (!res.ok) throw new Error("Failed to fetch rental");
@@ -31,9 +31,7 @@ export const rentalApi = {
         returnDate: new Date(data.returnDate).toISOString(),
       };
 
-      console.log("Formatted data being sent:", formattedData);
-
-      const res = await fetch(`${API_URL}/rentals`, {
+      const res = await fetch(`${API_URL}/api/v1/rentals`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,11 +41,10 @@ export const rentalApi = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Failed to create rental");
+        console.log("Car not avaliable");
       }
 
-      return await res.json();
+      return res;
     } catch (error) {
       console.error("API Error:", error);
       throw error;
@@ -56,7 +53,7 @@ export const rentalApi = {
 
   // Mengupdate status rental
   updateRentalStatus: async (id, status) => {
-    const res = await fetch(`${API_URL}/rentals/${id}/status`, {
+    const res = await fetch(`${API_URL}/api/v1/rentals/${id}/status`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +66,7 @@ export const rentalApi = {
 
   // Membatalkan rental
   cancelRental: async (id) => {
-    const res = await fetch(`${API_URL}/rentals/${id}/cancel`, {
+    const res = await fetch(`${API_URL}/api/v1/rentals/${id}/cancel`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

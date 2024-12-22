@@ -66,7 +66,7 @@ export default function App() {
                 <Chip color="primary">{item.status}</Chip>
               </div>
               <Image
-                alt="NextUI Fruit Image with Zoom"
+                alt="Car image"
                 src={item.image}
                 width={250}
                 height={2}
@@ -74,18 +74,24 @@ export default function App() {
               />
               <Divider />
               <h2 className="capitalize text-md font-bold py-2">{item.name}</h2>
-              <div className="grid grid-cols-2 justify-center items-center gap-4">
-                <p className="capitalize text-md font-semibold">{item.model}</p>
-                <h1 className="uppercase">{item.plateNumber}</h1>
-                <p className="text-sm">
-                  {new Intl.NumberFormat("id-ID", {
-                    style: "currency",
-                    currency: "IDR",
-                  }).format(item.dailyRate)}
-                </p>
-                <Button className="text-md hover:bg-gray-800 hover:text-white">
-                  Sewa
-                </Button>
+              <div className="flex flex-col gap-4">
+                <div className="flex justify-between items-center">
+                  <p className="text-sm">
+                    {new Intl.NumberFormat("id-ID", {
+                      style: "currency",
+                      currency: "IDR",
+                    }).format(item.dailyRate)}
+                  </p>
+
+                  <Link href={`/car/${item.id}`}>
+                    <Button
+                      size="sm"
+                      className="text-md hover:bg-gray-800 hover:text-white"
+                    >
+                      Sewa
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </CardBody>
           </Card>

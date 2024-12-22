@@ -2,14 +2,16 @@
 
 import Header from "@/components/Header";
 import useAuth from "@/context/AuthContext";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const HomePage = () => {
   const { user } = useAuth();
+  const router = useRouter();
 
   if (!user) {
-    redirect("/login");
+    router.push("/login");
   }
+
   return (
     <main className="container mx-auto">
       <Header />

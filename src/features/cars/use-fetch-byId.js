@@ -4,17 +4,14 @@ import { useParams } from "next/navigation";
 
 export const useGetCarById = () => {
   const params = useParams();
-  const [carId, setCarId] = useState(null);
+  const [carId, setCarId] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const fetchById = async () => {
     try {
       const response = await axiosInstance.get(`/api/v1/car/${params.id}`);
+      console.log(response.data.data);
 
-      if (response.data.success) {
-        setCarId(response.data.data);
-      } else {
-        throw new Error(response.message);
-      }
+      setCarId(response.data.data);
     } catch (error) {
       console.log("error get car by id", error);
     } finally {
